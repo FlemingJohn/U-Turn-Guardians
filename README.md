@@ -2,16 +2,16 @@
 
 # 🚦 U-Turn Guardians
 
-### AI-Powered Road Safety System for U-Turns and Sharp Bends
+### Smart Road Safety System for U-Turns and Sharp Bends
 
 [![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)](https://isocpp.org/)
 [![Arduino](https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white)](https://www.arduino.cc/)
-[![IoT](https://img.shields.io/badge/IoT-Enabled-FF6F00?style=for-the-badge&logo=internetofthings&logoColor=white)](https://github.com/FlemingJohn/U-Turn-Guardians)
+[![Embedded Systems](https://img.shields.io/badge/Embedded-Systems-FF6F00?style=for-the-badge)](https://github.com/FlemingJohn/U-Turn-Guardians)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 **Reducing accidents and saving lives through intelligent road safety interventions**
 
-[Features](#-key-features) • [Technology](#-technology-stack) • [Installation](#-installation) • [Documentation](#-documentation)
+[Features](#-key-features) • [Technology](#-technology-stack) • [Installation](#-installation) • [How It Works](#-how-it-works)
 
 </div>
 
@@ -40,7 +40,7 @@ U-turns and sharp bends are among the most dangerous sections of roadways, accou
 
 ## 💡 Our Solution
 
-**U-Turn Guardians** is an intelligent, IoT-enabled road safety system that provides real-time warnings and interventions to prevent accidents at dangerous road sections.
+**U-Turn Guardians** is an intelligent, embedded system that provides real-time warnings to prevent accidents at dangerous road sections using sensor-based detection and visual alerts.
 
 ### How It Works
 
@@ -52,7 +52,7 @@ graph LR
     D -->|No| E[Activate Warning Lights]
     D -->|Yes| F[Monitor Passage]
     E --> G[Alert Driver]
-    G --> H[Log Incident]
+    G --> H[Continue Monitoring]
     F --> H
     
     style A fill:#FFE5E5
@@ -67,14 +67,14 @@ graph LR
 - 🔍 **Ultrasonic Sensors** - Vehicle detection and distance measurement
 - 💡 **LED Warning System** - Visual alerts for approaching drivers
 - 🔊 **Audio Alerts** - Sound warnings for critical situations
-- 📡 **IoT Module** - Real-time data transmission and monitoring
 - ⚡ **Arduino Controller** - Central processing unit
+- 🔋 **Power Supply** - Battery-powered for reliability
 
 **Software:**
-- 🤖 **AI-Driven Analysis** - Speed calculation and risk assessment
-- 📊 **Data Logging** - Incident tracking and pattern analysis
-- 🌐 **Cloud Integration** - Remote monitoring and analytics
-- 📱 **Mobile Dashboard** - Real-time alerts and statistics
+- 🤖 **Speed Calculation** - Real-time speed analysis using dual sensors
+- 📊 **Data Logging** - Local incident tracking via serial monitor
+- ⚙️ **Embedded Logic** - C++ firmware for Arduino
+- 🎯 **Risk Assessment** - Automatic warning level determination
 
 ---
 
@@ -92,17 +92,11 @@ graph LR
 - **Audio Warnings** - Sound alerts for excessive speed
 - **Progressive Alerts** - Escalating warnings as danger increases
 
-### 📊 Data Analytics
-- **Incident Logging** - Comprehensive record of all events
-- **Pattern Recognition** - Identification of high-risk times and conditions
-- **Traffic Analysis** - Volume and speed statistics
-- **Reporting Dashboard** - Visual analytics and insights
-
-### 🌐 IoT Integration
-- **Remote Monitoring** - Real-time system status from anywhere
-- **Cloud Storage** - Secure data backup and analysis
-- **Mobile Alerts** - Notifications to traffic authorities
-- **System Diagnostics** - Automatic health monitoring
+### 📊 Data Monitoring
+- **Serial Output** - Real-time data display via serial monitor
+- **Speed Logging** - Record of vehicle speeds
+- **Event Tracking** - Log of warning activations
+- **System Diagnostics** - Status monitoring
 
 ---
 
@@ -111,21 +105,24 @@ graph LR
 **Embedded Systems:**
 - **Microcontroller:** Arduino Uno/Mega
 - **Language:** C++ (Arduino Framework)
-- **Sensors:** HC-SR04 Ultrasonic Sensors
-- **Communication:** ESP8266/ESP32 WiFi Module
-
-**Software & Tools:**
-- **IDE:** Arduino IDE, PlatformIO
-- **Libraries:** NewPing, WiFi, MQTT
-- **Cloud Platform:** ThingSpeak / AWS IoT
-- **Visualization:** Grafana, Custom Dashboard
+- **Sensors:** HC-SR04 Ultrasonic Sensors (2x)
+- **Output:** LED Arrays, Piezo Buzzer
 
 **Hardware Components:**
-- Ultrasonic Distance Sensors (HC-SR04)
-- High-Intensity LED Arrays
+- Arduino Uno/Mega Board
+- HC-SR04 Ultrasonic Distance Sensors (2x)
+- High-Intensity LEDs (Red, Yellow, Green)
 - Piezo Buzzer / Speaker
-- Power Supply (Solar + Battery Backup)
-- Weather-Proof Enclosure
+- Resistors (220Ω for LEDs)
+- Power Supply (9V Battery / 12V Adapter)
+- Breadboard & Jumper Wires
+- Weather-Proof Enclosure (for deployment)
+
+**Development Tools:**
+- **IDE:** Arduino IDE
+- **Libraries:** NewPing (for ultrasonic sensors)
+- **Debugging:** Serial Monitor
+- **Version Control:** Git
 
 ---
 
@@ -133,15 +130,15 @@ graph LR
 
 ### Hardware Setup
 
-```bash
-# Required Components
+**Required Components:**
+```
 1. Arduino Uno/Mega (1x)
 2. HC-SR04 Ultrasonic Sensors (2x)
-3. LED Arrays (Red, Yellow, Green)
+3. LEDs - Red, Yellow, Green (1x each)
 4. Piezo Buzzer (1x)
-5. ESP8266 WiFi Module (1x)
-6. Power Supply (12V, 2A)
-7. Connecting Wires & Breadboard
+5. Resistors 220Ω (3x for LEDs)
+6. Power Supply (9V Battery or 12V Adapter)
+7. Breadboard & Jumper Wires
 ```
 
 ### Circuit Diagram
@@ -176,15 +173,15 @@ cd U-Turn-Guardians
 
 # 3. Install Required Libraries
 # In Arduino IDE: Tools > Manage Libraries
-# Install: NewPing, ESP8266WiFi, PubSubClient
+# Search and install: "NewPing"
 
-# 4. Configure WiFi Credentials
-# Edit config.h with your WiFi details
+# 4. Open the sketch
+# File > Open > U-Turn-Guardians.ino
 
 # 5. Upload to Arduino
-# Select Board: Arduino Uno
-# Select Port: (Your Arduino Port)
-# Click Upload
+# Select Board: Tools > Board > Arduino Uno
+# Select Port: Tools > Port > (Your Arduino Port)
+# Click Upload button
 ```
 
 ---
@@ -193,9 +190,9 @@ cd U-Turn-Guardians
 
 ### System Parameters
 
-```cpp
-// config.h - Customize these values
+You can customize these values in the code:
 
+```cpp
 // Distance Thresholds (in cm)
 #define DETECTION_DISTANCE 500    // Start monitoring at 5 meters
 #define WARNING_DISTANCE 300      // Activate warnings at 3 meters
@@ -209,11 +206,6 @@ cd U-Turn-Guardians
 // Sensor Configuration
 #define SENSOR_DISTANCE 200      // Distance between sensors (cm)
 #define MEASUREMENT_INTERVAL 100 // Measurement frequency (ms)
-
-// WiFi Configuration
-#define WIFI_SSID "YourSSID"
-#define WIFI_PASSWORD "YourPassword"
-#define MQTT_SERVER "mqtt.server.com"
 ```
 
 ---
@@ -236,15 +228,14 @@ graph TB
     subgraph "Action Layer"
         F --> G{Risk Level}
         G -->|Low| H[Green LED]
-        G -->|Medium| I[Yellow LED + Log]
+        G -->|Medium| I[Yellow LED + Serial Log]
         G -->|High| J[Red LED + Buzzer + Alert]
     end
     
-    subgraph "IoT Layer"
-        I --> K[Cloud Database]
+    subgraph "Monitoring"
+        I --> K[Serial Monitor]
         J --> K
-        K --> L[Analytics Dashboard]
-        K --> M[Mobile Alerts]
+        K --> L[Data Display]
     end
     
     style F fill:#90EE90
@@ -273,7 +264,7 @@ graph TB
 
 ---
 
-## 📈 Impact & Results
+## 📈 Expected Impact
 
 ### Projected Benefits
 
@@ -283,14 +274,7 @@ graph TB
 | Speed Compliance | **80%** adherence to safe speeds |
 | Driver Awareness | **95%** notice warning system |
 | Response Time | **<1 second** detection to alert |
-| System Uptime | **99.5%** availability |
-
-### Real-World Applications
-
-✅ **Pilot Testing** - Deployed at 5 high-risk locations  
-✅ **Data Collection** - 10,000+ vehicle interactions logged  
-✅ **Positive Feedback** - 85% driver approval rating  
-✅ **Accident Prevention** - Zero accidents at equipped sites during trial
+| System Reliability | **99%** uptime with proper maintenance |
 
 ---
 
@@ -299,7 +283,7 @@ graph TB
 ### 1. Vehicle Detection
 ```cpp
 // Continuous monitoring mode
-while(true) {
+void loop() {
     distance1 = measureDistance(SENSOR1);
     if(distance1 < DETECTION_DISTANCE) {
         startTracking();
@@ -324,14 +308,15 @@ float calculateSpeed() {
 // Determine appropriate response
 void assessRisk(float speed) {
     if(speed > CRITICAL_SPEED) {
-        activateRedLED();
-        soundBuzzer();
-        sendAlert();
+        digitalWrite(RED_LED, HIGH);
+        tone(BUZZER, 1000);
+        Serial.println("CRITICAL: High speed detected!");
     } else if(speed > WARNING_SPEED) {
-        activateYellowLED();
-        logIncident();
+        digitalWrite(YELLOW_LED, HIGH);
+        Serial.println("WARNING: Moderate speed");
     } else {
-        activateGreenLED();
+        digitalWrite(GREEN_LED, HIGH);
+        Serial.println("SAFE: Speed within limits");
     }
 }
 ```
@@ -343,77 +328,64 @@ void assessRisk(float speed) {
 ```
 U-Turn-Guardians/
 │
-├── src/
-│   ├── main.cpp                 # Main program logic
-│   ├── sensors.cpp              # Sensor handling
-│   ├── warnings.cpp             # Warning system control
-│   ├── iot.cpp                  # IoT connectivity
-│   └── analytics.cpp            # Data processing
-│
-├── include/
-│   ├── config.h                 # Configuration parameters
-│   ├── sensors.h                # Sensor definitions
-│   └── constants.h              # System constants
-│
-├── lib/
-│   └── custom_libraries/        # Custom libraries
+├── U-Turn-Guardians.ino        # Main Arduino sketch
+├── sensors.h                    # Sensor functions
+├── warnings.h                   # Warning system control
+├── config.h                     # Configuration parameters
 │
 ├── docs/
-│   ├── HARDWARE_SETUP.md        # Hardware assembly guide
-│   ├── CALIBRATION.md           # Sensor calibration
-│   └── TROUBLESHOOTING.md       # Common issues
+│   ├── HARDWARE_SETUP.md       # Hardware assembly guide
+│   ├── CALIBRATION.md          # Sensor calibration
+│   └── TROUBLESHOOTING.md      # Common issues
 │
 ├── schematics/
-│   ├── circuit_diagram.png      # Circuit design
-│   └── pcb_layout.pdf           # PCB design files
+│   ├── circuit_diagram.png     # Circuit design
+│   └── fritzing_file.fzz      # Fritzing project file
 │
-├── data/
-│   └── sample_logs.csv          # Sample data logs
-│
-├── platformio.ini               # PlatformIO configuration
 ├── README.md                    # This file
 └── LICENSE                      # MIT License
 ```
 
 ---
 
-## 🤝 Contributing
+## 🔧 Testing & Calibration
 
-We welcome contributions to make roads safer! Here's how you can help:
+### Initial Testing
+1. **Power On** - Verify all LEDs light up briefly
+2. **Sensor Check** - Wave hand in front of sensors, check serial output
+3. **Distance Test** - Measure actual distances vs. sensor readings
+4. **Speed Test** - Use known speeds to verify calculations
+5. **Alert Test** - Verify LEDs and buzzer activate correctly
 
-### Areas for Contribution
-- 🔧 **Hardware Improvements** - Better sensor configurations
-- 💻 **Software Enhancements** - Algorithm optimization
-- 📊 **Data Analysis** - Pattern recognition improvements
-- 📱 **Mobile App** - Dashboard development
-- 📝 **Documentation** - Guides and tutorials
-
-### Contribution Process
-
-```bash
-# 1. Fork the repository
-# 2. Create a feature branch
-git checkout -b feature/amazing-improvement
-
-# 3. Make your changes
-# 4. Test thoroughly
-# 5. Commit with clear messages
-git commit -m "Add: Improved speed calculation algorithm"
-
-# 6. Push to your fork
-git push origin feature/amazing-improvement
-
-# 7. Open a Pull Request
+### Calibration
+```cpp
+// Adjust these values based on your testing
+#define DISTANCE_CORRECTION 1.05  // Multiply sensor reading
+#define TIME_OFFSET 50            // Subtract from time (ms)
 ```
 
 ---
 
-## 📚 Documentation
+## 🤝 Contributing
 
-- [Hardware Setup Guide](docs/HARDWARE_SETUP.md) - Complete assembly instructions
-- [Calibration Guide](docs/CALIBRATION.md) - Sensor calibration procedures
-- [Troubleshooting](docs/TROUBLESHOOTING.md) - Common issues and solutions
-- [API Documentation](docs/API.md) - IoT integration details
+We welcome contributions to make roads safer!
+
+### How to Contribute
+```bash
+# 1. Fork the repository
+# 2. Create a feature branch
+git checkout -b feature/improvement
+
+# 3. Make your changes
+# 4. Test thoroughly
+# 5. Commit with clear messages
+git commit -m "Add: Improved speed calculation"
+
+# 6. Push to your fork
+git push origin feature/improvement
+
+# 7. Open a Pull Request
+```
 
 ---
 
@@ -422,7 +394,7 @@ git push origin feature/amazing-improvement
 - 🥇 **Smart India Hackathon** - Finalist
 - 🌟 **1 GitHub Star** - Community recognition
 - 🔄 **1 Fork** - Active development interest
-- 📈 **Proven Impact** - Real-world deployment success
+- ✅ **Functional Prototype** - Successfully tested
 
 ---
 
@@ -435,9 +407,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - **Arduino Community** - For excellent embedded systems resources
-- **IoT Platforms** - ThingSpeak, AWS IoT for cloud infrastructure
 - **Road Safety Organizations** - For data and insights
-- **Beta Testers** - For valuable feedback and testing
+- **Open Source Contributors** - For libraries and tools
+- **Testing Team** - For valuable feedback
 
 ---
 
