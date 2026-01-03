@@ -69,13 +69,22 @@ Unpredictable accidents at U-turns and bends lead to frequent injuries, fataliti
 ## 🚀 Installation and Setup
 
 ### 1. Circuit Connection
-Connect the components as shown in the diagram below.
+
+#### Simulation View
+This 3D view shows the physical placement of components on the breadboard, making it easier to visualize the wiring.
+
+![Circuit Simulation](./Smart%20Accident%20Prevention%20and%20Emergency%20Alert%20System%20for%20U-Turns%20and%20Bends/Tinkercad/Circuit%20image.png)
+
+#### Schematic View
+This schematic provides a clear view of the pin connections for exact wiring.
+
+![Circuit Schematic](./Smart%20Accident%20Prevention%20and%20Emergency%20Alert%20System%20for%20U-Turns%20and%20Bends/Tinkercad/Circuit%20connection.png)
+
+**Pin Connections:**
 - **PIR 1:** Pin 2
 - **PIR 2:** Pin 3
 - **Green LEDs:** Pins 8 & 10
 - **Red LEDs:** Pins 9 & 13
-
-![Circuit Diagram](./Smart%20Accident%20Prevention%20and%20Emergency%20Alert%20System%20for%20U-Turns%20and%20Bends/Tinkercad/Circuit%20image.png)
 
 ### 2. Code Upload
 1. Open the [u_turn.ino](./Smart%20Accident%20Prevention%20and%20Emergency%20Alert%20System%20for%20U-Turns%20and%20Bends/Arduino%20Nano%20code/u_turn.ino) file in Arduino IDE.
