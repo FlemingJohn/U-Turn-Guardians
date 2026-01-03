@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U-Turn Guardians | Smart Road Safety</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><rect width='256' height='256' fill='none'/><path d='M232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Z' fill='%23ef4444'/><circle cx='128' cy='128' r='40' fill='%231e293b'/></svg>">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Mermaid JS -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+        // Initialize Mermaid with custom theme settings for better visibility
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: 'base',
+            themeVariables: {
+                darkMode: true,
+                background: '#1e293b',
+                primaryColor: '#3b82f6',
+                secondaryColor: '#ef4444',
+                tertiaryColor: '#1e293b',
+                clusterBkg: '#1e293b',
+                primaryTextColor: '#f8fafc',
+                lineColor: '#94a3b8',
+                lineColor: '#94a3b8',
+                fontFamily: 'Inter, sans-serif'
+            }
+
+        });
+
+        const systemArchitecture = `graph TD
+            A[Start] --> B{Motion at Sensor 1?}
+            B -- Yes --> C[Blink Red LED 2 <br/>Warn Side 2]
+            C --> D[Turn OFF Red LED 1]
+            B -- No --> E{Motion at Sensor 2?}
+            E -- Yes --> F[Blink Red LED 1 <br/>Warn Side 1]
+            F --> G[Turn OFF Red LED 2]
+            E -- No --> H[Blink Both Green LEDs <br/>Safe to Proceed]
+            H --> B`;
+
+        const userFlow = `graph LR
+            subgraph Driver Side A
+            OA[Driver A Approaches] --> DA{System Detects Motion?}
+            DA -- Yes --> WA[Warning on Side B]
+            end
+            
+            subgraph Driver Side B
+            OB[Driver B Approaches] --> WA
+            WA --> AB[Driver B Stops/Slows]
+            end
+            
+            subgraph Clear Road
+            NC[No Cars] --> GL[Green Lights on Both Sides]
+            GL --> PRO[Both Drivers Proceed]
+            end`;
+
+        async function loadDiagram(elementId, graphDefinition) {
+            try {
+                const element = document.getElementById(elementId);
+                const { svg } = await mermaid.render(elementId + 'Svg', graphDefinition);
+                element.innerHTML = svg;
+            } catch (error) {
+                console.error('Error loading diagram:', error);
+                document.getElementById(elementId).innerHTML = '<p class="text-red">Error loading diagram</p>';
+            }
+        }
+
+        // Load diagrams
+        loadDiagram('arch-diagram', systemArchitecture);
+        loadDiagram('flow-diagram', userFlow);
+    </script>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="ph-fill ph-traffic-signal"></i>
+                U-Turn Guardians
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#circuit">Circuit</a>
+                <a href="#model">Model</a>
+                <a href="#team">Team</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Smart Protection for<br><span class="text-green">Blind Curves</span></h1>
+                <p>An autonomous safety system that eliminates blind spots at U-turns using real-time sensor fusion and
+                    instant-response signaling.</p>
+                <div class="hero-btns">
+                    <a href="#features" class="btn btn-primary">Discover Tech</a>
+                    <a href="#demo" class="btn btn-outline">Watch Demo</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <i class="ph-duotone ph-traffic-signal pulsing-icon"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section: Problem & Solution (The Why) -->
+    <section class="problem-solution container">
+        <div class="split-layout">
+            <div class="text-content">
+                <h2 style="text-align: left;">The Accident Calculation</h2>
+                <p class="lead-text">Blind curves are fatal because they deny drivers the single most important asset:
+                    <strong>Time</strong>.
+                </p>
+
+                <div class="problem-block">
+                    <h3><i class="ph-bold ph-timer text-red"></i> The Reaction Gap</h3>
+                    <p>At 40 km/h, a car travels <strong>11 meters per second</strong>. A driver needs 2.5s to react to
+                        a sudden obstacle. On a blind U-Turn, you often have less than 5 meters of visibility. The math
+                        simply doesn't add up.</p>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-number text-red">40%</span>
+                    <p>of head-on collisions occur on sharp bends where visual confirmation is impossible until it's too
+                        late.</p>
+                </div>
+            </div>
+            <div class="text-content">
+                <h2 style="text-align: left;">The Digital Solution</h2>
+                <p class="lead-text">We replace human "guesswork" with <strong>millisecond-precision sensor
+                        fusion</strong>.</p>
+
+                <div class="problem-block">
+                    <h3><i class="ph-bold ph-broadcast text-green"></i> Extended Horizon</h3>
+                    <p>Our sensors "see" around the corner for you. By placing detectors 50m ahead of the curve, we
+                        effectively extend the driver's visual range, triggering warnings long before visual contact.
+                    </p>
+                </div>
+
+                <div class="stat-card border-green">
+                    <span class="stat-number text-green">10x</span>
+                    <p>Faster warning delivery than human visual processing, giving drivers the critical distance needed
+                        to brake.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Real-World Use Cases (The Where) -->
+    <section id="use-cases" class="use-cases container">
+        <h2>Real-World Deployment</h2>
+        <div class="grid">
+            <div class="card">
+                <i class="ph-bold ph-mountains card-icon"></i>
+                <h3>Mountain Passes</h3>
+                <p>Ideal for narrow hairpin bends where oncoming traffic visibility is effectively zero.</p>
+            </div>
+            <div class="card">
+                <i class="ph-bold ph-buildings card-icon"></i>
+                <h3>Urban U-Turns</h3>
+                <p>Prevents collisions in dense city traffic where U-turns are obstructed by dividers or vegetation.</p>
+            </div>
+            <div class="card">
+                <i class="ph-bold ph-car-profile card-icon"></i>
+                <h3>Parking Garages</h3>
+                <p>Manages blind corners in multi-level parking structures to prevent fender benders.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Section: Features (The What) -->
+    <section id="features" class="features container">
+        <h2>Key Technologies</h2>
+        <div class="grid">
+            <div class="card">
+                <i class="ph-bold ph-eye card-icon"></i>
+                <h3>Real-time Detection</h3>
+                <p>High-precision PIR sensors detect oncoming vehicles instantly, eliminating blind spots.</p>
+            </div>
+            <div class="card">
+                <i class="ph-bold ph-arrows-left-right card-icon"></i>
+                <h3>Cross-Alerting</h3>
+                <p>Smart logic triggers warnings on the opposite side, ensuring drivers are alerted before they turn.
+                </p>
+            </div>
+            <div class="card">
+                <i class="ph-bold ph-cpu card-icon"></i>
+                <h3>Embedded Logic</h3>
+                <p>Powered by Arduino Nano with optimized C++ code for millisecond-level response times.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Code Logic (The Logic) -->
+    <section id="code-logic" class="code-logic container">
+        <h2 style="text-align: left;">Intelligent Sensor Logic</h2>
+
+        <div class="split-layout top-align">
+            <div class="mac-window">
+                <div class="mac-header">
+                    <div class="mac-dots">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                    </div>
+                    <div class="mac-title">u_turn.ino</div>
+                </div>
+                <div class="code-content">
+                    <pre><code class="language-cpp">// Constants for sensor & LED pins
+const int pirPin1 = 2;    // PIR sensor 1
+const int pirPin2 = 3;    // PIR sensor 2
+const int redPin1 = 13;   // Red LED 1 (Side 1 Alert)
+const int redPin2 = 9;    // Red LED 2 (Side 2 Alert)
+
+void loop() {
+  // Read PIR sensors
+  int pir1 = digitalRead(pirPin1);
+  int pir2 = digitalRead(pirPin2);
+
+  if (pir1 == HIGH) {
+    // Car on Side 1 -> Warn Side 2
+    blinkRed(redPin2);
+    digitalWrite(redPin1, LOW);
+  } 
+  else if (pir2 == HIGH) {
+    // Car on Side 2 -> Warn Side 1
+    blinkRed(redPin1);
+    digitalWrite(redPin2, LOW);
+  } 
+  else {
+    // No Traffic -> All clear
+    blinkGreen();
+  }
+}
+</code></pre>
+                </div>
+            </div>
+
+            <div class="logic-cards">
+                <div class="card logic-card">
+                    <div class="status-icon bg-red-glow">
+                        <i class="ph-fill ph-warning-octagon"></i>
+                    </div>
+                    <div>
+                        <h3>Conflict Detected</h3>
+                        <p>If <strong>Side A</strong> has a vehicle, <strong>Side B</strong> immediately flashes RED to
+                            stop oncoming traffic.</p>
+                    </div>
+                </div>
+                <div class="card logic-card">
+                    <div class="status-icon bg-red-glow">
+                        <i class="ph-fill ph-warning-octagon"></i>
+                    </div>
+                    <div>
+                        <h3>Reverse Conflict</h3>
+                        <p>If <strong>Side B</strong> has a vehicle, <strong>Side A</strong> flashes RED to prevent
+                            collision.</p>
+                    </div>
+                </div>
+                <div class="card logic-card">
+                    <div class="status-icon bg-green-glow">
+                        <i class="ph-fill ph-check-circle"></i>
+                    </div>
+                    <div>
+                        <h3>Safe State</h3>
+                        <p>When no sensors are triggered, both sides show GREEN, allowing free flow.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="architecture" class="architecture">
+        <div class="container">
+            <h2>System Architecture</h2>
+            <div class="diagram-container">
+                <h3>Logic Flow</h3>
+                <div id="arch-diagram" class="diagram-content">Loading Architecture...</div>
+            </div>
+
+            <div class="diagram-container">
+                <h3>User Flow</h3>
+                <div id="flow-diagram" class="diagram-content">Loading User Flow...</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="circuit container">
+        <h2>Hardware Implementation</h2>
+
+        <div class="carousel-container">
+            <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+            <div class="carousel-slide active">
+                <img src="images/Circuit image.png" alt="3D Circuit Simulation">
+                <p class="caption">3D Simulation (Tinkercad)</p>
+            </div>
+            <div class="carousel-slide">
+                <img src="images/Circuit connection.png" alt="Circuit Schematic">
+                <p class="caption">Pin Connection Diagram</p>
+            </div>
+            <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+
+            <div class="carousel-dots">
+                <span class="dot-indicator active" onclick="currentSlide(0)"></span>
+                <span class="dot-indicator" onclick="currentSlide(1)"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Core Tech Stack -->
+    <section id="tech-stack" class="tech-stack">
+        <div class="container">
+            <h2>Core Technology Stack</h2>
+            <div class="grid">
+                <div class="stack-card">
+                    <i class="ph-bold ph-cpu card-icon"></i>
+                    <h3>Hardware</h3>
+                    <ul>
+                        <li>Arduino Nano (ATmega328P)</li>
+                        <li>HC-SR501 PIR Motion Sensors</li>
+                        <li>High-Intensity LED Modules</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <i class="ph-bold ph-code card-icon"></i>
+                    <h3>Software</h3>
+                    <ul>
+                        <li>Embedded C++ (Logic)</li>
+                        <li>Tinkercad (Simulation)</li>
+                        <li>Eagle (PCB Design)</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <i class="ph-bold ph-chart-line-up card-icon"></i>
+                    <h3>Future AI</h3>
+                    <ul>
+                        <li>Python YOLOv5 (Vision)</li>
+                        <li>TensorFlow Lite (Edge ML)</li>
+                        <li>Cloud Telemetry Dashboard</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    </div>
+    </footer>
+
+    <!-- Section: Contributors -->
+    <section id="team" class="team container">
+        <h2>Meet the Builders</h2>
+        <div class="grid contributors-grid">
+            <div class="card contributor-card">
+                <div class="profile-img-container">
+                    <img src="https://github.com/Akshayaa08.png" alt="Akshayaa08" class="profile-img">
+                </div>
+                <h3>Akshayaa</h3>
+                <p>Team Lead</p>
+                <div class="social-mini">
+                    <a href="https://github.com/Akshayaa08" target="_blank"><i class="ph-bold ph-github-logo"></i></a>
+                </div>
+            </div>
+            <div class="card contributor-card">
+                <div class="profile-img-container">
+                    <img src="https://github.com/FlemingJohn.png" alt="FlemingJohn" class="profile-img">
+                </div>
+                <h3>Fleming John</h3>
+                <p>Arduino Coding & Docs</p>
+                <div class="social-mini">
+                    <a href="https://github.com/FlemingJohn" target="_blank"><i class="ph-bold ph-github-logo"></i></a>
+                </div>
+            </div>
+            <div class="card contributor-card">
+                <div class="profile-img-container">
+                    <img src="https://github.com/savana-jones.png" alt="savana-jones" class="profile-img">
+                </div>
+                <h3>Savana Jones</h3>
+                <p>Circuit Connection</p>
+                <div class="social-mini">
+                    <a href="https://github.com/savana-jones" target="_blank"><i class="ph-bold ph-github-logo"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/FlemingJohn/U-Turn-Guardians" target="_blank"><i
+                        class="ph-bold ph-github-logo"></i></a>
+                <a href="https://www.arduino.cc/" target="_blank"><i class="ph-bold ph-monitor"></i></a>
+            </div>
+            <p>&copy; 2026 U-Turn Guardians. MIT License.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

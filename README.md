@@ -48,10 +48,36 @@ The system employs a "Cross-Alerting" logic where sensors on one side trigger al
 - **Sensor 2 (Side B)** detects a vehicle -> **Red LED 1 (Side A)** blinks.
 - **No Detection** -> Both sides show **Green** (Safe).
 
-![System Architecture Diagram](https://mermaid.ink/img/pako:eNpVkFtqwzAQRfdC_uwA-8F2Q6F00z6U0g8IzkhjiRZZIxlT7N6Rk6yS_RjOnTsz94G1qgEDGvixfMEY9lRswZ1lS97yJ7_yK7vBwY-1BwMefK_0GfL4eX_g4XF74Jc7e-Av9oFdYJ0-YJ09YF18YF1hP7A-0E_sF_YL-4P9w_5h_3AI7AgHwSPhSIgSIkWIlCBRgqRJkDYJ0iVBuhKkK0G6EqQbrS9fQboSpCtButL68hWkK0G6EqQravgXVB_g_wD_C_wP8H_A_wL_A_wfSP_4_wP8L_D_wP8B_y_wP8D_Av8H_C_wP8D_Av8DH7YfFVIz6Q?type=png)
+```mermaid
+graph TD
+    A[Start] --> B{Motion at Sensor 1?}
+    B -- Yes --> C[Blink Red LED 2 <br/>(Warn Side 2)]
+    C --> D[Turn OFF Red LED 1]
+    B -- No --> E{Motion at Sensor 2?}
+    E -- Yes --> F[Blink Red LED 1 <br/>(Warn Side 1)]
+    F --> G[Turn OFF Red LED 2]
+    E -- No --> H[Blink Both Green LEDs <br/>(Safe to Proceed)]
+    H --> B
+```
 
 ### User Flow
-![User Flow Diagram](https://mermaid.ink/img/pako:eNptkE1rwzAMhv9K0NlC94fthkLppn0opR8QnJHGEi2xRjKm2L8jJ1ll-zGcdz0S_UhYqwYMaODH8gVj2FOxBXeWLXnLn_zKr-wGBz_WHgx48P3SZ8jj5_2Bh4ftgV_u7IG_2Ad2gXX6gHX2gHXxgXWF_cD6QD_x_7Bf2B_sH_YP-4dDYEc4CB4JR0KUEClCpASJEiRNorRJkC4J0pUgXQnSlSBdaX35CtKVIJ0J0pXWl68gXQnSlSBd0fAvqD7A_wH-F_gf4H-A_wX-B_g_kP7x_wf4X-D_gf8D_l_gf4D_Bf4H-F_gf4D_Bf4HeNo-dErNpA?type=png)
+```mermaid
+graph LR
+    subgraph Driver Side A
+    OA[Driver A Approaches] --> DA{System Detects Motion?}
+    DA -- Yes --> WA[Warning on Side B]
+    end
+    
+    subgraph Driver Side B
+    OB[Driver B Approaches] --> WA
+    WA --> AB[Driver B Stops/Slows]
+    end
+    
+    subgraph Clear Road
+    NC[No Cars] --> GL[Green Lights on Both Sides]
+    GL --> PRO[Both Drivers Proceed]
+    end
+```
 
 ---
 
