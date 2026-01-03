@@ -40,10 +40,14 @@ Unpredictable accidents at U-turns and bends lead to frequent injuries, fataliti
 
 ## 🏗 System Architecture
 
-- **System Architecture:** [View Diagram](diagrams/system_architecture.mmd)
-- **User Flow:** [View Diagram](diagrams/user_flow.mmd)
+
 
 ### System Architecture
+The system employs a "Cross-Alerting" logic where sensors on one side trigger alerts on the opposite side.
+- **Sensor 1 (Side A)** detects a vehicle -> **Red LED 2 (Side B)** blinks to warn oncoming traffic.
+- **Sensor 2 (Side B)** detects a vehicle -> **Red LED 1 (Side A)** blinks.
+- **No Detection** -> Both sides show **Green** (Safe).
+
 ![System Architecture Diagram](https://mermaid.ink/img/pako:eNpVkFtqwzAQRfdC_uwA-8F2Q6F00z6U0g8IzkhjiRZZIxlT7N6Rk6yS_RjOnTsz94G1qgEDGvixfMEY9lRswZ1lS97yJ7_yK7vBwY-1BwMefK_0GfL4eX_g4XF74Jc7e-Av9oFdYJ0-YJ09YF18YF1hP7A-0E_sF_YL-4P9w_5h_3AI7AgHwSPhSIgSIkWIlCBRgqRJkDYJ0iVBuhKkK0G6EqQbrS9fQboSpCtButL68hWkK0G6EqQravgXVB_g_wD_C_wP8H_A_wL_A_wfSP_4_wP8L_D_wP8B_y_wP8D_Av8H_C_wP8D_Av8DH7YfFVIz6Q?type=png)
 
 ### User Flow
