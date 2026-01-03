@@ -1,0 +1,9 @@
+graph TD
+    A[Start] --> B{Motion at Sensor 1?}
+    B -- Yes --> C[Blink Red LED 2 \n(Warn Side 2)]
+    C --> D[Turn OFF Red LED 1]
+    B -- No --> E{Motion at Sensor 2?}
+    E -- Yes --> F[Blink Red LED 1 \n(Warn Side 1)]
+    F --> G[Turn OFF Red LED 2]
+    E -- No --> H[Blink Both Green LEDs \n(Safe to Proceed)]
+    H --> B

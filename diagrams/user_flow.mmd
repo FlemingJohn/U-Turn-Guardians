@@ -1,0 +1,15 @@
+graph LR
+    subgraph Driver Side A
+    OA[Driver A Approaches] --> DA{System Detects Motion?}
+    DA -- Yes --> WA[Warning on Side B]
+    end
+    
+    subgraph Driver Side B
+    OB[Driver B Approaches] --> WA
+    WA --> AB[Driver B Stops/Slows]
+    end
+    
+    subgraph Clear Road
+    NC[No Cars] --> GL[Green Lights on Both Sides]
+    GL --> PRO[Both Drivers Proceed]
+    end
